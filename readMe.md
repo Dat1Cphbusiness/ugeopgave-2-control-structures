@@ -1,13 +1,28 @@
-# ugeopave 2 controlstrukturere
+# Ugeopgave 2: Kontrolstrukturer
+
+Der er mange opgaver i dette sæt og det er ikke meningen at du skal lave dem alle.
+Du skal i stedet **udvælge mindst 1 opgave fra hvert disse 8 emner:**. 
 
 
-- [while loops opg.20-26](#while-opgaver)
-- [for loops opg.27-33](#loops-opgaver)
+**Betingelser**
+- [Simple if/else (opg. 1-2)](#simple-betingelser)
+- [AND-operator (opg. 3-4)](#betingelser-med-and)
+- [OR-operator (opg. 5-7)](#betingelser-med-or)
+- [Kombinerede operatorer (opg. 8-9)](#kombinerede-operatorer)
 
+**Loops**
+- [Switch-case (opg. 10-14)](#switch-case)
+- [While loops (opg. 15-19)](#while-loops)
+- [For loops (opg. 20-24)](#for-loops)
+- [For loops med array (opg. 25-28)](#for-loops-med-array)
+- [For-each loops (opg. 29-31)](#for-each-loops)
 
-Conditions (betingelser) og loops (Løkker)
+---
 
-## Simple betingelser 
+# Betingelser
+
+## Simple betingelser
+
 ### Opgave 1: Shopping discount
 **Scenario:** Butik giver 20% discount hvis totalPrice > 1000 kr.
 
@@ -63,6 +78,8 @@ if (bmi >= 25) {
 
 ---
 
+## Betingelser med AND
+
 ### Opgave 3: Time of day greeting
 **Scenario:** Baseret på time (0-23), print different greeting.
 
@@ -90,81 +107,7 @@ if (hour >= 5 && hour <= 11) {
 
 ---
 
-### Opgave 4: Shipping cost
-**Scenario:**
-- Free shipping hvis totalPrice > 500
-- 50 kr hvis totalPrice > 200
-- 100 kr ellers
-
-**Opgave:**
-Beregn shipping cost og total.
-
-<details>
-<summary>Se svar</summary>
-
-```java
-double totalPrice = 350.0;
-double shippingCost;
-
-if (totalPrice > 500) {
-    shippingCost = 0.0;
-} else if (totalPrice > 200) {
-    shippingCost = 50.0;
-} else {
-    shippingCost = 100.0;
-}
-
-double finalTotal = totalPrice + shippingCost;
-
-System.out.println("Items: " + totalPrice + " kr");
-System.out.println("Shipping: " + shippingCost + " kr");
-System.out.println("Total: " + finalTotal + " kr");
-```
-</details>
-
----
-
-### Opgave 5: Grade pass/fail with message
-**Scenario:**
-Print både grade OG om det er pass/fail.
-
-**Opgave:**
-Score = 82. Print grade og pass/fail status.
-
-<details>
-<summary>Se svar</summary>
-
-```java
-int score = 82;
-String grade;
-String status;
-
-if (score >= 90) {
-    grade = "A";
-} else if (score >= 80) {
-    grade = "B";
-} else if (score >= 70) {
-    grade = "C";
-} else if (score >= 60) {
-    grade = "D";
-} else {
-    grade = "F";
-}
-
-if (score >= 60) {
-    status = "PASS";
-} else {
-    status = "FAIL";
-}
-
-System.out.println("Grade: " + grade);
-System.out.println("Status: " + status);
-```
-</details>
-
----
-
-### Opgave 6: Complete student report
+### Opgave 4: Complete student report
 **Scenario:**
 Lav en komplet student rapport med score, grade, status, og comment.
 
@@ -218,9 +161,11 @@ System.out.println("===================");
 ```
 </details>
 
-## Betingelser med OR operatoren (||, eller)
+---
 
-### Opgave 7: Shipping eligibility
+## Betingelser med OR
+
+### Opgave 5: Shipping eligibility
 **Scenario:**
 Free shipping hvis: (totalPrice > 500) OR (isMember AND totalPrice > 200).
 Calculate shipping cost (0 hvis free, ellers 50 kr).
@@ -251,7 +196,7 @@ System.out.println("Total: " + finalTotal + " kr");
 
 ---
 
-### Opgave 8: Movie rating system
+### Opgave 6: Movie rating system
 **Scenario:**
 Kan se film hvis: (age >= ratingAge) OR (age >= 13 AND hasParentalConsent).
 
@@ -276,7 +221,7 @@ if (age >= movieRating || (age >= 13 && hasParentalConsent)) {
 
 ---
 
-### Opgave 9: Restaurant seating
+### Opgave 7: Restaurant seating
 **Scenario:**
 Kan få bord hvis: (partySize <= availableSeats) AND ((hasReservation OR waitTime < 30) AND NOT restaurantFull).
 
@@ -304,7 +249,9 @@ if ((partySize <= availableSeats) &&
 
 ---
 
-### Opgave 10: Insurance premium calculator
+## Kombinerede operatorer
+
+### Opgave 8: Insurance premium calculator
 **Scenario:**
 Higher premium hvis: (age < 25 OR age > 70) OR (hasAccidents AND accidents > 2) OR riskZone.
 Base premium = 5000 kr, add 2000 kr hvis higher premium.
@@ -337,7 +284,7 @@ System.out.println("Annual premium: " + premium + " kr");
 
 ---
 
-### Opgave 11: Complete access control system
+### Opgave 9: Complete access control system
 **Scenario:**
 Build et complete access control system.
 
@@ -346,13 +293,12 @@ Access levels:
 - LIMITED: (isUser AND accountActive AND NOT suspended) OR (isGuest AND guestTimeValid)
 - DENIED: alle andre
 
-Test multiple scenarios og print access level for hver.
+Test med isAdmin = true, accountActive = true, isSuperUser = false.
 
 <details>
 <summary>Se svar</summary>
 
 ```java
-// Scenario 1: Admin user
 boolean isAdmin = true;
 boolean accountActive = true;
 boolean isSuperUser = false;
@@ -376,37 +322,14 @@ System.out.println("Admin: " + isAdmin);
 System.out.println("Active: " + accountActive);
 System.out.println("Result: " + accessLevel);
 System.out.println("====================");
-
-// Scenario 2: Regular user
-isAdmin = false;
-isSuperUser = false;
-isUser = true;
-accountActive = true;
-suspended = false;
-
-if ((isAdmin && accountActive) || isSuperUser) {
-    accessLevel = "FULL ACCESS";
-} else if ((isUser && accountActive && !suspended) || (isGuest && guestTimeValid)) {
-    accessLevel = "LIMITED ACCESS";
-} else {
-    accessLevel = "ACCESS DENIED";
-}
-
-System.out.println("
-=== ACCESS CONTROL ===");
-System.out.println("User: " + isUser);
-System.out.println("Active: " + accountActive);
-System.out.println("Suspended: " + suspended);
-System.out.println("Result: " + accessLevel);
-System.out.println("====================");
-
-// Test more scenarios...
 ```
 </details>
 
+---
+
 # Switch-case
 
-### Opgave 12: Restaurant menu pricing
+### Opgave 10: Restaurant menu pricing
 **Scenario:**
 Menu items: "burger"=89kr, "pizza"=95kr, "salad"=65kr, "pasta"=79kr, "steak"=145kr.
 Calculate total for quantity. Test med item = "pizza", quantity = 2.
@@ -451,65 +374,7 @@ System.out.println("Total: " + total + " kr");
 
 ---
 
-### Opgave 13: Traffic fine calculator
-**Scenario:**
-Speed limit = 130 km/h. Fines: 131-140 = 500kr, 141-150 = 1000kr, 151+ = 2000kr + license suspension.
-Calculate fine for speed = 145.
-
-<details>
-<summary>Se svar</summary>
-
-```java
-int speedLimit = 130;
-int speed = 145;
-int fine;
-boolean licenseSuspended = false;
-
-int overSpeed = speed - speedLimit;
-
-// Group overspeed into categories
-int category;
-if (overSpeed <= 0) {
-    category = 0;  // No violation
-} else if (overSpeed <= 10) {
-    category = 1;  // 1-10 over
-} else if (overSpeed <= 20) {
-    category = 2;  // 11-20 over
-} else {
-    category = 3;  // 21+ over
-}
-
-switch (category) {
-    case 0:
-        fine = 0;
-        System.out.println("Within speed limit");
-        break;
-    case 1:
-        fine = 500;
-        break;
-    case 2:
-        fine = 1000;
-        break;
-    case 3:
-        fine = 2000;
-        licenseSuspended = true;
-        break;
-    default:
-        fine = 0;
-}
-
-System.out.println("Speed: " + speed + " km/h");
-System.out.println("Limit: " + speedLimit + " km/h");
-System.out.println("Fine: " + fine + " kr");
-if (licenseSuspended) {
-    System.out.println("License suspended!");
-}
-```
-</details>
-
----
-
-### Opgave 14: Shipping cost calculator
+### Opgave 11: Shipping cost calculator
 **Scenario:**
 Shipping zones: "Local"=50kr, "Regional"=100kr, "National"=150kr, "International"=300kr.
 Add 20kr per kg over 5kg. Test med zone = "National", weight = 7kg.
@@ -559,7 +424,7 @@ System.out.println("Total: " + totalCost + " kr");
 
 ---
 
-### Opgave 15: ATM transaction
+### Opgave 12: ATM transaction
 **Scenario:**
 ATM operations: "withdraw", "deposit", "balance", "transfer".
 Balance = 5000kr, amount = 1000kr, operation = "withdraw".
@@ -612,7 +477,7 @@ if (success && !operation.equals("balance")) {
 
 ---
 
-### Opgave 16: Ticket booking system
+### Opgave 13: Ticket booking system
 **Scenario:**
 Event types: "movie"=100kr, "concert"=250kr, "sports"=200kr, "theater"=150kr.
 Discounts: students get 20% off concerts and theater.
@@ -668,7 +533,7 @@ System.out.println("Total: " + total + " kr");
 
 ---
 
-### Opgave 17: Complete order system
+### Opgave 14: Complete order system
 **Scenario:**
 Build a simple order system.
 
@@ -743,158 +608,9 @@ System.out.println("=============");
 
 ---
 
-### Opgave 18: Grade calculator with multiple inputs
-**Scenario:**
-Calculate final grade baseret på 3 assignments.
+## While loops
 
-Grade conversion: 90-100=A, 80-89=B, 70-79=C, 60-69=D, 0-59=F.
-
-Test med assignment1=85, assignment2=92, assignment3=78.
-
-<details>
-<summary>Se svar</summary>
-
-```java
-int assignment1 = 85;
-int assignment2 = 92;
-int assignment3 = 78;
-
-double average = (assignment1 + assignment2 + assignment3) / 3.0;
-int avgRounded = (int) Math.round(average);
-
-// Convert to grade category for switch
-int gradeCategory;
-if (avgRounded >= 90) {
-    gradeCategory = 5;
-} else if (avgRounded >= 80) {
-    gradeCategory = 4;
-} else if (avgRounded >= 70) {
-    gradeCategory = 3;
-} else if (avgRounded >= 60) {
-    gradeCategory = 2;
-} else {
-    gradeCategory = 1;
-}
-
-String letterGrade;
-String comment;
-
-switch (gradeCategory) {
-    case 5:
-        letterGrade = "A";
-        comment = "Excellent work!";
-        break;
-    case 4:
-        letterGrade = "B";
-        comment = "Good job!";
-        break;
-    case 3:
-        letterGrade = "C";
-        comment = "Satisfactory";
-        break;
-    case 2:
-        letterGrade = "D";
-        comment = "Needs improvement";
-        break;
-    case 1:
-        letterGrade = "F";
-        comment = "Failing";
-        break;
-    default:
-        letterGrade = "?";
-        comment = "Error";
-}
-
-System.out.println("=== GRADE REPORT ===");
-System.out.println("Assignment 1: " + assignment1);
-System.out.println("Assignment 2: " + assignment2);
-System.out.println("Assignment 3: " + assignment3);
-System.out.println("Average: " + average);
-System.out.println("Letter Grade: " + letterGrade);
-System.out.println("Comment: " + comment);
-System.out.println("===================");
-```
-</details>
-
----
-
-### Opgave 19: Multi-level menu system
-**Scenario:**
-Create a two-level menu system med switch statements.
-
-Main menu: 1=Account, 2=Transactions, 3=Settings, 4=Exit.
-For Account (choice=1), submenu: 1=View, 2=Edit, 3=Delete.
-
-Test med mainChoice = 1, subChoice = 2.
-
-<details>
-<summary>Se svar</summary>
-
-```java
-int mainChoice = 1;
-int subChoice = 2;
-
-System.out.println("=== MAIN MENU ===");
-
-switch (mainChoice) {
-    case 1:
-        System.out.println("Account Menu");
-        System.out.println("-------------");
-        
-        switch (subChoice) {
-            case 1:
-                System.out.println("Viewing account details...");
-                break;
-            case 2:
-                System.out.println("Editing account...");
-                break;
-            case 3:
-                System.out.println("Deleting account...");
-                break;
-            default:
-                System.out.println("Invalid account option");
-        }
-        break;
-        
-    case 2:
-        System.out.println("Transactions Menu");
-        System.out.println("----------------");
-        
-        switch (subChoice) {
-            case 1:
-                System.out.println("View history");
-                break;
-            case 2:
-                System.out.println("New transaction");
-                break;
-            default:
-                System.out.println("Invalid transaction option");
-        }
-        break;
-        
-    case 3:
-        System.out.println("Settings Menu");
-        break;
-        
-    case 4:
-        System.out.println("Exiting...");
-        break;
-        
-    default:
-        System.out.println("Invalid main menu choice");
-}
-
-System.out.println("================");
-// Output: Account Menu, Editing account...
-```
-</details>
-
----
----
-
-## While opgaver
-
-### Opgave 20: Savings goal
+### Opgave 15: Savings goal
 **Scenario:**
 Du sparer 500 kr om måneden. Hvor mange måneder før du har 10,000 kr?
 
@@ -923,7 +639,7 @@ System.out.println("Goal reached in " + months + " months");
 
 ---
 
-### Opgave 21: Loan repayment
+### Opgave 16: Loan repayment
 **Scenario:**
 Du låner 5000 kr. Du betaler 200 kr om måneden. Hvor lang tid tager det?
 
@@ -956,7 +672,7 @@ System.out.println("Loan paid off in " + months + " months");
 
 ---
 
-### Opgave 22: Temperature conversion table
+### Opgave 17: Temperature conversion table
 **Scenario:**
 Print Celsius til Fahrenheit conversion table.
 
@@ -984,7 +700,7 @@ while (celsius <= 100) {
 
 ---
 
-### Opgave 23: Compound interest
+### Opgave 18: Compound interest
 **Scenario:**
 Du investerer 10,000 kr med 5% årlig rente. Hvor mange år før du har 20,000 kr?
 
@@ -1013,7 +729,7 @@ System.out.println("Target reached in " + years + " years");
 
 ---
 
-### Opgave 24: Password attempts
+### Opgave 19: Password attempts
 **Scenario:**
 User har 3 attempts til at gætte password.
 
@@ -1066,95 +782,9 @@ if (!success) {
 
 ---
 
-### Opgave 25: Number guessing game
-**Scenario:**
-Computer "tænker" på et tal mellem 1-100. Du gætter systematisk.
+# For loops
 
-**Opgave:**
-Find tallet 73 ved at guess 1, 2, 3, ... indtil correct.
-
-<details>
-<summary>Se svar</summary>
-
-```java
-int secretNumber = 73;
-int guess = 1;
-int attempts = 0;
-
-while (guess != secretNumber) {
-    attempts++;
-    guess++;
-}
-
-System.out.println("Found " + secretNumber + " in " + attempts + " attempts");
-// Output: Found 73 in 72 attempts
-```
-</details>
-
----
-
-### Opgave 26: Complete simulation - Population growth
-**Scenario:**
-En by har 10,000 indbyggere. Befolkningen vokser 3% om året.
-
-**Opgave:**
-Calculate:
-1. Hvor mange år før population > 20,000?
-2. Hvad er population efter 10 år?
-3. Hvor mange år før population > 30,000?
-
-<details>
-<summary>Se svar</summary>
-
-```java
-double population = 10000.0;
-double growthRate = 0.03;  // 3%
-int years = 0;
-
-System.out.println("Year " + years + ": " + (int)population + " people");
-
-// Part 1: Years to reach 20,000
-while (population <= 20000) {
-    population = population * (1 + growthRate);
-    years++;
-    System.out.println("Year " + years + ": " + (int)population + " people");
-}
-
-int yearsTo20k = years;
-System.out.println();
-System.out.println("Reached 20,000 in " + yearsTo20k + " years");
-
-// Part 2: Population after 10 years from start
-population = 10000.0;
-years = 0;
-while (years < 10) {
-    population = population * (1 + growthRate);
-    years++;
-}
-System.out.println("After 10 years: " + (int)population + " people");
-
-// Part 3: Years to reach 30,000
-population = 10000.0;
-years = 0;
-while (population <= 30000) {
-    population = population * (1 + growthRate);
-    years++;
-}
-System.out.println("Reached 30,000 in " + years + " years");
-
-System.out.println();
-System.out.println("=== SUMMARY ===");
-System.out.println("20,000 reached: " + yearsTo20k + " years");
-System.out.println("Population at year 10: " + (int)(10000 * Math.pow(1.03, 10)));
-```
-</details>
-
----
-
-
-## Loops opgaver
-
-### Opgave 27: Temperature conversion table
+### Opgave 20: Temperature conversion table
 **Scenario:**
 Print Celsius til Fahrenheit conversion table.
 
@@ -1178,7 +808,7 @@ for (int c = -10; c <= 40; c += 5) {
 
 ---
 
-### Opgave 28: Savings calculator
+### Opgave 21: Savings calculator
 **Scenario:**
 Du sparer 1000 kr om måneden i 12 måneder.
 
@@ -1207,33 +837,7 @@ System.out.println("Total after 1 year: " + total + " kr");
 
 ---
 
-### Opgave 29: Compound interest table
-**Scenario:**
-Investering på 10,000 kr med 5% årlig rente.
-
-**Opgave:**
-Print værdi efter 1-10 år.
-
-<details>
-<summary>Se svar</summary>
-
-```java
-double principal = 10000.0;
-double rate = 0.05;
-
-System.out.println("Year | Balance");
-System.out.println("-----|----------");
-
-for (int year = 1; year <= 10; year++) {
-    principal = principal * (1 + rate);
-    System.out.println(year + "    | " + (int)principal + " kr");
-}
-```
-</details>
-
----
-
-### Opgave 30: Multiplication tables 1-10
+### Opgave 22: Multiplication tables 1-10
 **Scenario:**
 Print gangetabeller for alle tal fra 1 til 10.
 
@@ -1256,7 +860,7 @@ for (int n = 1; n <= 10; n++) {
 
 ---
 
-### Opgave 31: FizzBuzz
+### Opgave 23: FizzBuzz
 **Scenario:**
 Classic FizzBuzz problem.
 
@@ -1287,7 +891,7 @@ for (int i = 1; i <= 30; i++) {
 
 ---
 
-### Opgave 32: Prime numbers
+### Opgave 24: Prime numbers
 **Scenario:**
 Find om et tal er primtal.
 
@@ -1319,67 +923,345 @@ if (isPrime) {
 
 ---
 
-### Opgave 33: Complete statistics calculator
+# For loops med array
+
+### Opgave 25: Grade statistics
 **Scenario:**
-Beregn statistik for tallene 1-100.
+En klasse har scores: {85, 92, 78, 88, 95, 73, 90}.
 
 **Opgave:**
-Calculate og print:
-1. Sum af alle tal
-2. Sum af lige tal
-3. Sum af ulige tal
-4. Antal tal delelige med 7
-5. Product af første 10 tal (10!)
-6. Gennemsnit af alle tal
+Calculate:
+- Average
+- Højeste karakter
+- Laveste karakter
+- Antal over 80
 
 <details>
 <summary>Se svar</summary>
 
 ```java
-// Variables
-int totalSum = 0;
-int evenSum = 0;
-int oddSum = 0;
-int divisibleBy7 = 0;
-int factorial = 1;
-int count = 0;
+int[] scores = {85, 92, 78, 88, 95, 73, 90};
 
-// Main calculation loop
-for (int i = 1; i <= 100; i++) {
-    // Total sum
-    totalSum += i;
-    count++;
-    
-    // Even/odd sum
-    if (i % 2 == 0) {
-        evenSum += i;
-    } else {
-        oddSum += i;
-    }
-    
-    // Divisible by 7
-    if (i % 7 == 0) {
-        divisibleBy7++;
-    }
-    
-    // Factorial (first 10 only)
-    if (i <= 10) {
-        factorial *= i;
+// Average
+int sum = 0;
+for (int i = 0; i < scores.length; i++) {
+    sum += scores[i];
+}
+double average = (double) sum / scores.length;
+
+// Min and max
+int min = scores[0];
+int max = scores[0];
+for (int i = 1; i < scores.length; i++) {
+    if (scores[i] < min) min = scores[i];
+    if (scores[i] > max) max = scores[i];
+}
+
+// Count above 80
+int countAbove80 = 0;
+for (int i = 0; i < scores.length; i++) {
+    if (scores[i] > 80) {
+        countAbove80++;
     }
 }
 
-// Calculate average
-double average = (double) totalSum / count;
+System.out.println("=== GRADE STATISTICS ===");
+System.out.println("Average: " + average);
+System.out.println("Highest: " + max);
+System.out.println("Lowest: " + min);
+System.out.println("Scores above 80: " + countAbove80);
+```
+</details>
+
+---
+
+### Opgave 26: Temperature analysis
+**Scenario:**
+Ugens temperaturer: {18, 22, 20, 25, 19, 21, 23} (°C).
+
+**Opgave:**
+Find:
+- Gennemsnits temperatur
+- Varmeste dag
+- Koldeste dag
+- Antal dage over 20°C
+
+<details>
+<summary>Se svar</summary>
+
+```java
+int[] temps = {18, 22, 20, 25, 19, 21, 23};
+String[] days = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
+
+// Average
+int sum = 0;
+for (int i = 0; i < temps.length; i++) {
+    sum += temps[i];
+}
+double average = (double) sum / temps.length;
+
+// Find hottest and coldest days
+int hottestIndex = 0;
+int coldestIndex = 0;
+for (int i = 1; i < temps.length; i++) {
+    if (temps[i] > temps[hottestIndex]) {
+        hottestIndex = i;
+    }
+    if (temps[i] < temps[coldestIndex]) {
+        coldestIndex = i;
+    }
+}
+
+// Count days above 20
+int countAbove20 = 0;
+for (int i = 0; i < temps.length; i++) {
+    if (temps[i] > 20) {
+        countAbove20++;
+    }
+}
+
+System.out.println("=== TEMPERATURE ANALYSIS ===");
+System.out.println("Average: " + average + "°C");
+System.out.println("Hottest: " + days[hottestIndex] + " (" + temps[hottestIndex] + "°C)");
+System.out.println("Coldest: " + days[coldestIndex] + " (" + temps[coldestIndex] + "°C)");
+System.out.println("Days above 20°C: " + countAbove20);
+```
+</details>
+
+---
+
+### Opgave 27: Sales analysis
+**Scenario:**
+Månedens daglige salg: {1200, 1500, 900, 2100, 1800, 1300, 2500} (kr).
+
+**Opgave:**
+Calculate:
+- Total salg
+- Gennemsnitligt dagligt salg
+- Bedste salgsdag
+- Dage med salg over 1500 kr
+
+<details>
+<summary>Se svar</summary>
+
+```java
+int[] sales = {1200, 1500, 900, 2100, 1800, 1300, 2500};
+
+// Total sales
+int total = 0;
+for (int i = 0; i < sales.length; i++) {
+    total += sales[i];
+}
+
+// Average
+double average = (double) total / sales.length;
+
+// Best day
+int bestDay = 0;
+for (int i = 1; i < sales.length; i++) {
+    if (sales[i] > sales[bestDay]) {
+        bestDay = i;
+    }
+}
+
+// Count days above 1500
+int countAbove1500 = 0;
+for (int i = 0; i < sales.length; i++) {
+    if (sales[i] > 1500) {
+        countAbove1500++;
+    }
+}
+
+System.out.println("=== SALES ANALYSIS ===");
+System.out.println("Total sales: " + total + " kr");
+System.out.println("Average daily: " + average + " kr");
+System.out.println("Best day: Day " + (bestDay + 1) + " (" + sales[bestDay] + " kr)");
+System.out.println("Days above 1500 kr: " + countAbove1500);
+```
+</details>
+
+---
+
+### Opgave 28: Complete data analysis
+**Scenario:**
+Analyse af test scores fra to klasser.
+
+**Opgave:**
+Class A: {85, 92, 78, 88, 95, 73, 90}
+Class B: {80, 85, 90, 75, 88, 92, 87}
+
+For hver klasse, find:
+- Average
+- Highest og lowest score
+- Antal passing (>= 60)
+- Antal excellent (>= 90)
+
+Derefter compare klasserne.
+
+<details>
+<summary>Se svar</summary>
+
+```java
+int[] classA = {85, 92, 78, 88, 95, 73, 90};
+int[] classB = {80, 85, 90, 75, 88, 92, 87};
+
+// Analyze Class A
+int sumA = 0;
+int minA = classA[0];
+int maxA = classA[0];
+int passingA = 0;
+int excellentA = 0;
+
+for (int i = 0; i < classA.length; i++) {
+    sumA += classA[i];
+    if (classA[i] < minA) minA = classA[i];
+    if (classA[i] > maxA) maxA = classA[i];
+    if (classA[i] >= 60) passingA++;
+    if (classA[i] >= 90) excellentA++;
+}
+double avgA = (double) sumA / classA.length;
+
+// Analyze Class B
+int sumB = 0;
+int minB = classB[0];
+int maxB = classB[0];
+int passingB = 0;
+int excellentB = 0;
+
+for (int i = 0; i < classB.length; i++) {
+    sumB += classB[i];
+    if (classB[i] < minB) minB = classB[i];
+    if (classB[i] > maxB) maxB = classB[i];
+    if (classB[i] >= 60) passingB++;
+    if (classB[i] >= 90) excellentB++;
+}
+double avgB = (double) sumB / classB.length;
 
 // Print results
-System.out.println("=== STATISTICS FOR 1-100 ===");
-System.out.println("Total sum: " + totalSum);
-System.out.println("Sum of even numbers: " + evenSum);
-System.out.println("Sum of odd numbers: " + oddSum);
-System.out.println("Count divisible by 7: " + divisibleBy7);
-System.out.println("10! = " + factorial);
-System.out.println("Average: " + average);
-System.out.println("============================");
+System.out.println("=== CLASS A STATISTICS ===");
+System.out.println("Average: " + avgA);
+System.out.println("Highest: " + maxA);
+System.out.println("Lowest: " + minA);
+System.out.println("Passing: " + passingA);
+System.out.println("Excellent: " + excellentA);
+System.out.println();
+
+System.out.println("=== CLASS B STATISTICS ===");
+System.out.println("Average: " + avgB);
+System.out.println("Highest: " + maxB);
+System.out.println("Lowest: " + minB);
+System.out.println("Passing: " + passingB);
+System.out.println("Excellent: " + excellentB);
+System.out.println();
+
+System.out.println("=== COMPARISON ===");
+if (avgA > avgB) {
+    System.out.println("Class A has higher average");
+} else {
+    System.out.println("Class B has higher average");
+}
+System.out.println("Difference: " + Math.abs(avgA - avgB));
+```
+</details>
+
+---
+
+# For-each loops
+
+### Opgave 29: Shopping cart total
+**Scenario:**
+Prices i shopping cart: `{299.0, 149.0, 899.0, 49.0}` (kr).
+
+**Opgave:**
+Beregn total pris med for-each loop.
+
+<details>
+<summary>Se svar</summary>
+
+```java
+double[] prices = {299.0, 149.0, 899.0, 49.0};
+double total = 0.0;
+
+for (double price : prices) {
+    total += price;
+}
+
+System.out.println("Total: " + total + " kr");
+// Output: Total: 1396.0 kr
+```
+</details>
+
+---
+
+### Opgave 30: Student names
+**Scenario:**
+Class roster: `{"Emma", "Liam", "Olivia", "Noah", "Ava"}`.
+
+**Opgave:**
+1. Print welcome message for hver student
+2. Count names med 4 letters
+3. Find longest name
+
+<details>
+<summary>Se svar</summary>
+
+```java
+String[] students = {"Emma", "Liam", "Olivia", "Noah", "Ava"};
+
+// 1. Welcome messages
+System.out.println("=== WELCOME ===");
+for (String student : students) {
+    System.out.println("Welcome, " + student + "!");
+}
+
+// 2. Count 4-letter names
+int count4Letters = 0;
+for (String student : students) {
+    if (student.length() == 4) {
+        count4Letters++;
+    }
+}
+
+// 3. Longest name
+String longest = students[0];
+for (String student : students) {
+    if (student.length() > longest.length()) {
+        longest = student;
+    }
+}
+
+System.out.println("\n=== STATISTICS ===");
+System.out.println("4-letter names: " + count4Letters);
+System.out.println("Longest name: " + longest);
+```
+</details>
+
+---
+
+### Opgave 31: Product inventory
+**Scenario:**
+Stock levels: `{45, 12, 67, 8, 34, 5, 89}`.
+Reorder threshold: 10.
+
+**Opgave:**
+Count hvor mange produkter skal reorders (stock <= 10).
+
+<details>
+<summary>Se svar</summary>
+
+```java
+int[] stock = {45, 12, 67, 8, 34, 5, 89};
+int reorderThreshold = 10;
+int reorderCount = 0;
+
+for (int level : stock) {
+    if (level <= reorderThreshold) {
+        reorderCount++;
+    }
+}
+
+System.out.println("Products needing reorder: " + reorderCount);
+// Output: Products needing reorder: 2
 ```
 </details>
 
