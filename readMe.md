@@ -24,10 +24,23 @@ Du skal i stedet **udvælge mindst 1 opgave fra hvert disse 8 emner:**.
 ## Simple betingelser
 
 ### Opgave 1: Shopping discount
-**Scenario:** Butik giver 20% discount hvis totalPrice > 1000 kr.
+**Scenario:** En butik giver 20% discount hvis totalPrice > 1000 kr.
 
 **Opgave:**
 Beregn final price efter discount.
+
+<details>
+<summary>Hjælp</summary>
+
+ 1. Start med at erklære to variable til `finalPrice` og `totalPrice`.
+ 2. Lav et if-else statement, hvor du tjekker om totalPrice opfylder betingelsen for discount
+ 3. Beregn 20% af `totalPrice` (`totalPrice * 0.2`), træk værdien fra totalPrice, tildel resultatet af hele regnestykket til `finalPrice`
+ ELLER beregn 80% (`totalPrice * 0.8`) af `totalPrice` og tildel resultatet til `finalPrice` 
+ 4. Giv besked om at discounten er udløst.
+ 5. Print den endelige pris
+</details>
+
+
 
 <details>
 <summary>Se svar</summary>
@@ -39,9 +52,7 @@ double finalPrice;
 if (totalPrice > 1000) {
     finalPrice = totalPrice * 0.8;  // 20% discount
     System.out.println("Discount applied!");
-} else {
-    finalPrice = totalPrice;
-}
+} 
 
 System.out.println("Final price: " + finalPrice + " kr");
 // Output: Discount applied! Final price: 960.0 kr
@@ -81,13 +92,21 @@ if (bmi >= 25) {
 ## Betingelser med AND
 
 ### Opgave 3: Time of day greeting
-**Scenario:** Baseret på time (0-23), print different greeting.
+**Scenario:** Afhængig af hvad tid på dagen det er, skal der printes en passende besked.
+Hvis klokken er mellem 5-11 er det formiddag, eftermiddag (12-17), aften (18-21), nat (22-4).
 
 **Opgave:**
-Morning (5-11), Afternoon (12-17), Evening (18-21), Night (22-4).
+Klokken er 14.
+
+<details>
+<summary>Forventet output</summary>
+Good afternoon!
+</details>
+
 
 <details>
 <summary>Se svar</summary>
+
 
 ```java
 int hour = 14;
@@ -101,7 +120,7 @@ if (hour >= 5 && hour <= 11) {
 } else {
     System.out.println("Good night!");
 }
-// Output: Good afternoon!
+
 ```
 </details>
 
@@ -117,6 +136,16 @@ Lav en komplet student rapport med score, grade, status, og comment.
 - Print status (PASS/FAIL)
 - Print comment baseret på grade: A="Excellent", B="Good", C="Satisfactory", D="Needs improvement", F="Failing"
 
+<details>
+<summary>Forventet output</summary>
+
+`=== STUDENT REPORT ===`  
+`Score: 88`  
+`Grade: B`  
+`Status: PASS`  
+`Comment: Good`   
+
+</details>
 <details>
 <summary>Se svar</summary>
 
@@ -168,7 +197,7 @@ System.out.println("===================");
 ### Opgave 5: Shipping eligibility
 **Scenario:**
 Free shipping hvis: (totalPrice > 500) OR (isMember AND totalPrice > 200).
-Calculate shipping cost (0 hvis free, ellers 50 kr).
+Beregn shipping cost (0 hvis free, ellers 50 kr).
 
 Test med totalPrice = 350, isMember = true.
 
@@ -198,34 +227,52 @@ System.out.println("Total: " + finalTotal + " kr");
 
 ### Opgave 6: Movie rating system
 **Scenario:**
-Kan se film hvis: (age >= ratingAge) OR (age >= 13 AND hasParentalConsent).
+En biograf tjekker om gæster må se en film. Filmen har en aldersgrænse.
+Gæsten må se filmen hvis de er gamle nok, ELLER hvis de er mindst 13 og har forældretilladelse.
 
-Test med movieRating = 15, age = 14, hasParentalConsent = true.
+**Opgave:**
+Skriv kode der tjekker om gæsten må se filmen.
+Test med ageLimit = 15, guestAge = 14, hasParentalConsent = true.
+
+<details>
+<summary>Forventet output</summary>
+Can watch movie
+</details>
 
 <details>
 <summary>Se svar</summary>
 
 ```java
-int movieRating = 15;
-int age = 14;
+int ageLimit = 15;
+int guestAge = 14;
 boolean hasParentalConsent = true;
 
-if (age >= movieRating || (age >= 13 && hasParentalConsent)) {
-    System.out.println("Can watch movie");
+if (guestAge >= ageLimit || (guestAge >= 13 && hasParentalConsent)) {
+System.out.println("Can watch movie");
 } else {
-    System.out.println("Cannot watch movie");
+System.out.println("Cannot watch movie");
 }
-// Output: Can watch movie
 ```
 </details>
+
+
 
 ---
 
 ### Opgave 7: Restaurant seating
 **Scenario:**
-Kan få bord hvis: (partySize <= availableSeats) AND ((hasReservation OR waitTime < 30) AND NOT restaurantFull).
+En restaurant tjekker om en gruppe kan få bord. De skal have plads nok, og enten have reservation eller kort ventetid. Restauranten må heller ikke være fyldt.
 
+**Opgave:**
+Skriv kode der tjekker om gruppen kan få bord.
 Test med partySize = 4, availableSeats = 6, hasReservation = false, waitTime = 20, restaurantFull = false.
+
+<details>
+<summary>Forventet output</summary>
+
+`Table available`  
+`Estimated wait: 20 minutes`
+</details>
 
 <details>
 <summary>Se svar</summary>
@@ -237,15 +284,17 @@ boolean hasReservation = false;
 int waitTime = 20;
 boolean restaurantFull = false;
 
-if ((partySize <= availableSeats) && 
-    ((hasReservation || waitTime < 30) && !restaurantFull)) {
-    System.out.println("Table available");
-    System.out.println("Estimated wait: " + waitTime + " minutes");
+if ((partySize <= availableSeats) &&
+((hasReservation || waitTime < 30) && !restaurantFull)) {
+System.out.println("Table available");
+System.out.println("Estimated wait: " + waitTime + " minutes");
 } else {
-    System.out.println("No table available");
+System.out.println("No table available");
 }
 ```
 </details>
+
+
 
 ---
 
@@ -253,10 +302,19 @@ if ((partySize <= availableSeats) &&
 
 ### Opgave 8: Insurance premium calculator
 **Scenario:**
-Higher premium hvis: (age < 25 OR age > 70) OR (hasAccidents AND accidents > 2) OR riskZone.
-Base premium = 5000 kr, add 2000 kr hvis higher premium.
+Et forsikringsselskab beregner præmie baseret på risiko. Højere præmie gives hvis kunden er ung (under 25) eller ældre (over 70), har haft mere end 2 ulykker, eller bor i en risikozone.
 
+**Opgave:**
+Skriv kode der beregner præmien. Basispræmie er 5000 kr, tillæg for høj risiko er 2000 kr.
 Test med age = 22, hasAccidents = false, accidents = 0, riskZone = false.
+
+<details>
+<summary>Forventet output</summary>
+
+`Higher risk category`  
+`Annual premium: 7000 kr`
+
+</details>
 
 <details>
 <summary>Se svar</summary>
@@ -271,29 +329,37 @@ int basePremium = 5000;
 int premium;
 
 if ((age < 25 || age > 70) || (hasAccidents && accidents > 2) || riskZone) {
-    premium = basePremium + 2000;
-    System.out.println("Higher risk category");
+premium = basePremium + 2000;
+System.out.println("Higher risk category");
 } else {
-    premium = basePremium;
-    System.out.println("Standard risk category");
+premium = basePremium;
+System.out.println("Standard risk category");
 }
 
 System.out.println("Annual premium: " + premium + " kr");
 ```
+
 </details>
 
 ---
 
 ### Opgave 9: Complete access control system
 **Scenario:**
-Build et complete access control system.
+Et system har tre adgangsniveauer. Fuld adgang gives til aktive admins eller superbrugere. Begrænset adgang gives til aktive brugere der ikke er suspenderet, eller gæster med gyldig tid. Alle andre får adgang nægtet.
 
-Access levels:
-- FULL: (isAdmin AND accountActive) OR (isSuperUser)
-- LIMITED: (isUser AND accountActive AND NOT suspended) OR (isGuest AND guestTimeValid)
-- DENIED: alle andre
-
+**Opgave:**
+Skriv kode der bestemmer adgangsniveau.
 Test med isAdmin = true, accountActive = true, isSuperUser = false.
+
+<details>
+<summary>Forventet output</summary>
+
+`=== ACCESS CONTROL ===`  
+`Admin: true`  
+`Active: true`  
+`Result: FULL ACCESS`
+
+</details>
 
 <details>
 <summary>Se svar</summary>
@@ -310,11 +376,11 @@ boolean guestTimeValid = false;
 String accessLevel;
 
 if ((isAdmin && accountActive) || isSuperUser) {
-    accessLevel = "FULL ACCESS";
+accessLevel = "FULL ACCESS";
 } else if ((isUser && accountActive && !suspended) || (isGuest && guestTimeValid)) {
-    accessLevel = "LIMITED ACCESS";
+accessLevel = "LIMITED ACCESS";
 } else {
-    accessLevel = "ACCESS DENIED";
+accessLevel = "ACCESS DENIED";
 }
 
 System.out.println("=== ACCESS CONTROL ===");
@@ -323,16 +389,28 @@ System.out.println("Active: " + accountActive);
 System.out.println("Result: " + accessLevel);
 System.out.println("====================");
 ```
+
 </details>
 
----
+---Claude is AI and can make mistakes. Please double-check responses.
 
 # Switch-case
 
 ### Opgave 10: Restaurant menu pricing
 **Scenario:**
-Menu items: "burger"=89kr, "pizza"=95kr, "salad"=65kr, "pasta"=79kr, "steak"=145kr.
-Calculate total for quantity. Test med item = "pizza", quantity = 2.
+En restaurant har følgende menu:
+
+| Item | Pris |
+|------|------|
+| burger | 89 kr |
+| pizza | 95 kr |
+| salad | 65 kr |
+| pasta | 79 kr |
+| steak | 145 kr |
+
+**Opgave:**
+Brug switch til at finde prisen og beregn total for en bestilling.
+Test med item = "pizza", quantity = 2.
 
 <details>
 <summary>Se svar</summary>
@@ -376,8 +454,31 @@ System.out.println("Total: " + total + " kr");
 
 ### Opgave 11: Shipping cost calculator
 **Scenario:**
-Shipping zones: "Local"=50kr, "Regional"=100kr, "National"=150kr, "International"=300kr.
-Add 20kr per kg over 5kg. Test med zone = "National", weight = 7kg.
+Et fragtfirma beregner pris baseret på zone og vægt:
+
+| Zone | Pris |
+|------|------|
+| Local | 50 kr |
+| Regional | 100 kr |
+| National | 150 kr |
+| International | 300 kr |
+
+Tillæg: 20 kr per kg over 5 kg.
+
+**Opgave:**
+Brug switch til at finde zonepris og beregn total fragtomkostning.
+Test med zone = "National", weight = 7 kg.
+
+<details>
+<summary>Forventet output</summary>
+
+`Zone: National`  
+`Weight: 7.0 kg`  
+`Base cost: 150.0 kr`  
+`Extra weight cost: 40.0 kr`  
+`Total: 190.0 kr`
+
+</details>
 
 <details>
 <summary>Se svar</summary>
@@ -389,27 +490,27 @@ double baseCost;
 double extraCost = 0.0;
 
 switch (zone) {
-    case "Local":
-        baseCost = 50.0;
-        break;
-    case "Regional":
-        baseCost = 100.0;
-        break;
-    case "National":
-        baseCost = 150.0;
-        break;
-    case "International":
-        baseCost = 300.0;
-        break;
-    default:
-        baseCost = 0.0;
-        System.out.println("Invalid zone");
+case "Local":
+baseCost = 50.0;
+break;
+case "Regional":
+baseCost = 100.0;
+break;
+case "National":
+baseCost = 150.0;
+break;
+case "International":
+baseCost = 300.0;
+break;
+default:
+baseCost = 0.0;
+System.out.println("Invalid zone");
 }
 
 // Calculate extra cost for weight
 if (weight > 5.0) {
-    double extraKg = weight - 5.0;
-    extraCost = extraKg * 20.0;
+double extraKg = weight - 5.0;
+extraCost = extraKg * 20.0;
 }
 
 double totalCost = baseCost + extraCost;
@@ -420,6 +521,7 @@ System.out.println("Base cost: " + baseCost + " kr");
 System.out.println("Extra weight cost: " + extraCost + " kr");
 System.out.println("Total: " + totalCost + " kr");
 ```
+
 </details>
 
 ---
