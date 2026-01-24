@@ -1096,7 +1096,7 @@ For hver klasse, find:
 - Antal passing (>= 60)
 - Antal excellent (>= 90)
 
-Derefter compare klasserne.
+Derefter sammenlign klasserne.
 
 <details>
 <summary>Se svar</summary>
@@ -1198,9 +1198,9 @@ System.out.println("Total: " + total + " kr");
 Class roster: `{"Emma", "Liam", "Olivia", "Noah", "Ava"}`.
 
 **Opgave:**
-1. Print welcome message for hver student
-2. Count names med 4 letters
-3. Find longest name
+1. Print en velkomst besked for hver student
+2. Tæl navne med 4 bogstaver i
+3. Find det længste navn
 
 <details>
 <summary>Se svar</summary>
@@ -1240,11 +1240,21 @@ System.out.println("Longest name: " + longest);
 
 ### Opgave 31: Product inventory
 **Scenario:**
+En skobutik har sko i 7 størrelser. Lad os sige fra str 38 til 44. På den første plads i tabellen kan man se at der er 45 par tilbage i størrelse 38.   
+
 Stock levels: `{45, 12, 67, 8, 34, 5, 89}`.
+
+Hvis der er 10 eller færre par tilbage af en størrelse, skal der genbestilles.  
 Reorder threshold: 10.
 
 **Opgave:**
-Count hvor mange produkter skal reorders (stock <= 10).
+Tæl hvor mange størrelser, der skal genbestilles (stock <= 10).
+
+<details>
+<summary>Forventet output</summary>
+
+`Products needing reorder: 2 `
+</details>
 
 <details>
 <summary>Se svar</summary>
@@ -1261,7 +1271,7 @@ for (int level : stock) {
 }
 
 System.out.println("Products needing reorder: " + reorderCount);
-// Output: Products needing reorder: 2
+
 ```
 </details>
 
