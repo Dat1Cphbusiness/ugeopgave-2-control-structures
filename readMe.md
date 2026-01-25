@@ -13,9 +13,9 @@ Du skal i stedet **udvælge mindst 1 opgave fra hvert disse 8 emner:**.
 **Loops**
 - [Switch-case (opg. 10-14)](#switch-case)
 - [While loops (opg. 15-19)](#while-loops)
-- [For loops (opg. 20-24)](#for-loops)
-- [For loops med array (opg. 25-28)](#for-loops-med-array)
-- [For-each loops (opg. 29-31)](#for-each-loops)
+- [For loops (opg. 20-23)](#for-loops)
+- [For loops med array (opg. 24-26)](#for-loops-med-array)
+- [For-each loops (opg. 27-29)](#for-each-loops)
 
 ---
 
@@ -526,11 +526,19 @@ System.out.println("Total: " + totalCost + " kr");
 
 ---
 
-### Opgave 12: ATM transaction
-**Scenario:**
-ATM operations: "withdraw", "deposit", "balance", "transfer".
-Balance = 5000kr, amount = 1000kr, operation = "withdraw".
+### Opgave 12: ATM-transaktion
 
+Skriv et program der simulerer en simpel pengeautomat. Programmet skal håndtere fire forskellige operationer: "withdraw", "deposit", "balance" og "transfer".
+
+**Brug følgende startværdier:**
+- `balance` = 5000 kr
+- `amount` = 1000 kr
+- `operation` = "withdraw"
+
+Programmet skal bruge en `switch` til at vælge den rigtige handling baseret på `operation`, og printe resultatet samt den nye saldo (hvis relevant).
+Test dit program så der skrives korrekt output for hver operation.
+
+**Tip:** Ved "withdraw" og "transfer" skal du tjekke om der er penge nok på kontoen.
 <details>
 <summary>Se svar</summary>
 
@@ -579,11 +587,25 @@ if (success && !operation.equals("balance")) {
 
 ---
 
-### Opgave 13: Ticket booking system
-**Scenario:**
-Event types: "movie"=100kr, "concert"=250kr, "sports"=200kr, "theater"=150kr.
-Discounts: students get 20% off concerts and theater.
-Calculate total for eventType = "concert", quantity = 2, isStudent = true.
+### Opgave 13: Billetbestillingssystem
+
+Skriv et program der beregner den samlede pris for en billetbestilling til et arrangement.
+
+**Billetpriser:**
+- "movie" = 100 kr
+- "concert" = 250 kr
+- "sports" = 200 kr
+- "theater" = 150 kr
+
+**Rabat:** Studerende får 20% rabat på "concert" og "theater".
+
+**Brug følgende værdier:**
+- `eventType` = "concert"
+- `quantity` = 2
+- `isStudent` = true
+
+Brug en `switch` til at finde billetprisen baseret på `eventType`, anvend eventuelt studierabat, og udregn den samlede pris for alle billetter. Test ved at printe en oversigt over bestillingen inklusive eventtype, basispris, rabat (hvis relevant), pris per billet, antal billetter og samlet pris.
+Sørg for at det virker med eventType som "movie", "concert", "sports", og "theater".
 
 <details>
 <summary>Se svar</summary>
@@ -635,17 +657,29 @@ System.out.println("Total: " + total + " kr");
 
 ---
 
-### Opgave 14: Complete order system
-**Scenario:**
-Build a simple order system.
+### Opgave 14: Bestillingssystem
 
-Items:
-- "coffee" = 25kr (sizes: small=1.0x, medium=1.2x, large=1.5x)
-- "tea" = 20kr (sizes: small=1.0x, medium=1.2x, large=1.5x)
-- "sandwich" = 45kr (no sizes)
-- "cake" = 35kr (no sizes)
+Skriv et program der beregner prisen for en bestilling i en café.
 
-Calculate total for: item = "coffee", size = "large", quantity = 2.
+**Produkter og priser:**
+- "coffee" = 25 kr
+- "tea" = 20 kr
+- "sandwich" = 45 kr
+- "cake" = 35 kr
+
+**Størrelser (kun for drikkevarer):**
+- "small" = normal pris (1.0x)
+- "medium" = 1.2x pris
+- "large" = 1.5x pris
+
+**Brug følgende værdier:**
+- `item` = "coffee"
+- `size` = "large"
+- `quantity` = 2
+
+Brug en `switch` til at finde produktets basispris. 
+Hvis produktet er en drikkevare, skal du bruge en anden `switch` (eller nested switch) til at justere prisen efter størrelse. 
+Beregn den samlede pris og print resultatet.
 
 <details>
 <summary>Se svar</summary>
@@ -743,7 +777,7 @@ System.out.println("Goal reached in " + months + " months");
 
 ### Opgave 16: Loan repayment
 **Scenario:**
-Du låner 5000 kr. Du betaler 200 kr om måneden. Hvor lang tid tager det?
+Du låner 5000 kr. Du betaler 200 kr om måneden. Hvor mange måneder, før du har betalt lånet tilbage?
 
 **Opgave:**
 Simulate loan repayment.
@@ -774,13 +808,29 @@ System.out.println("Loan paid off in " + months + " months");
 
 ---
 
-### Opgave 17: Temperature conversion table
-**Scenario:**
-Print Celsius til Fahrenheit conversion table.
+### Opgave 17: Temperaturomregningstabel
+Skriv et program der printer en tabel over temperaturomregninger fra Celsius til Fahrenheit.
 
-**Opgave:**
-Print conversions fra 0°C til 100°C i steps of 10.
-Formula: F = C × 9/5 + 32
+**Krav:**
+- Print omregninger fra 0°C til 100°C
+- Gå op i spring af 10 grader (0, 10, 20, ... 100)
+- Brug formlen: F = C × 9/5 + 32
+
+**pro tip:** Husk at bruge `9.0` og `5.0` i formlen for at få et decimaltal som resultat.
+
+<details>
+<summary>Hjælp: Trin-for-trin guide</summary>
+
+1. Opret en variabel til at holde styr på den nuværende Celsius-værdi (start ved 0)
+2. Brug en `while`-løkke der kører så længe Celsius er ≤ 100
+3. Inde i løkken: beregn Fahrenheit ud fra den nuværende Celsius-værdi
+4. Print begge værdier på en linje
+5. Øg Celsius med 10 inden næste gennemløb
+6. Afslut løkken når Celsius når 100
+7. Print tabellen i et pænt format med overskrifter
+
+</details>
+
 
 <details>
 <summary>Se svar</summary>
@@ -802,12 +852,29 @@ while (celsius <= 100) {
 
 ---
 
-### Opgave 18: Compound interest
-**Scenario:**
-Du investerer 10,000 kr med 5% årlig rente. Hvor mange år før du har 20,000 kr?
+### Opgave 18: Renters rente
+
+Du sætter 10.000 kr ind på en opsparingskonto med 5% årlig rente. Hvert år vokser beløbet med 5% af det nuværende beløb (ikke kun af de oprindelige 10.000 kr).
 
 **Opgave:**
-Calculate compound interest med while loop.
+Skriv et program der finder ud af hvor mange år der går, før du har mindst 20.000 kr.
+
+**Eksempel på hvordan beløbet vokser:**
+- År 0: 10.000 kr
+- År 1: 10.500 kr (10.000 × 1.05)
+- År 2: 11.025 kr (10.500 × 1.05)
+- osv.
+
+<details>
+<summary>Hjælp: Trin-for-trin guide</summary>
+
+1. Start med at erklære to variable: `principal` (start ved 10000.0) og `years` (start ved 0)
+2. Opret en `while`-løkke der kører så længe `principal` er mindre end 20000.0
+3. Inde i løkken: opdater `principal` ved at gange med 1.05 for at tilføje 5% rente
+4. Øg `years` med 1 for hvert gennemløb
+5. Efter løkken: print hvor mange år det tog at nå målet
+6. 
+</details>
 
 <details>
 <summary>Se svar</summary>
@@ -831,86 +898,68 @@ System.out.println("Target reached in " + years + " years");
 
 ---
 
-### Opgave 19: Password attempts
-**Scenario:**
-User har 3 attempts til at gætte password.
+### Opgave 19: Password-forsøg
 
-**Opgave:**
-Simulate password attempts. Correct password = "secret123".
-Test passwords: "wrong1", "wrong2", "secret123".
+Skriv et program hvor brugeren skal gætte et password. Brugeren har maksimalt 3 forsøg.
+
+**Krav:**
+- Det korrekte password er "secret123"
+- Brugeren indtaster sit gæt via `Scanner`
+- Programmet skal give besked om gættet var rigtigt eller forkert
+- Efter 3 forkerte forsøg skal programmet udskrive "Account locked"
+
+
+<details>
+<summary>Hjælp: Trin-for-trin guide</summary>
+
+1. Opret en `Scanner` til at læse brugerens input
+2. Opret variabler for det korrekte password, antal forsøg (start: 0), og om login lykkedes (start: false)
+3. Brug en `while`-løkke der kører så længe forsøg < 3 og login ikke er lykkedes
+4. Inde i løkken: bed brugeren om at indtaste password, og læs input med Scanner
+5. Tjek om input matcher det korrekte password
+6. Hvis ja: sæt login til true og print "Access granted!"
+7. Hvis nej: print "Wrong password" og tæl forsøg op
+8. Efter løkken: hvis login stadig er false, print "Account locked"
+</details>
+
+**Hint:** Husk at bruge `.equals()` når du sammenligner Strings.
 
 <details>
 <summary>Se svar</summary>
 
 ```java
+import java.util.Scanner;
+
+Scanner scanner = new Scanner(System.in);
 String correctPassword = "secret123";
 int maxAttempts = 3;
 int attempts = 0;
 boolean success = false;
 
-// Simulate attempts
-String attempt1 = "wrong1";
-String attempt2 = "wrong2";
-String attempt3 = "secret123";
-
 while (attempts < maxAttempts && !success) {
-    attempts++;
-    
-    String currentAttempt;
-    if (attempts == 1) {
-        currentAttempt = attempt1;
-    } else if (attempts == 2) {
-        currentAttempt = attempt2;
-    } else {
-        currentAttempt = attempt3;
-    }
-    
-    System.out.println("Attempt " + attempts + ": " + currentAttempt);
-    
-    if (currentAttempt.equals(correctPassword)) {
+System.out.print("Indtast password: ");
+String input = scanner.nextLine();
+attempts++;
+
+    if (input.equals(correctPassword)) {
         success = true;
         System.out.println("Access granted!");
     } else {
         System.out.println("Wrong password");
+        System.out.println("Forsøg brugt: " + attempts + "/" + maxAttempts);
     }
 }
 
 if (!success) {
-    System.out.println("Account locked");
-}
-// Output: Access granted on attempt 3
-```
-</details>
-
----
-
-# For loops
-
-### Opgave 20: Temperature conversion table
-**Scenario:**
-Print Celsius til Fahrenheit conversion table.
-
-**Opgave:**
-Print conversions fra -10°C til 40°C i steps of 5.
-Formula: F = C × 9/5 + 32
-
-<details>
-<summary>Se svar</summary>
-
-```java
-System.out.println("Celsius | Fahrenheit");
-System.out.println("--------|------------");
-
-for (int c = -10; c <= 40; c += 5) {
-    double f = c * 9.0 / 5.0 + 32.0;
-    System.out.println(c + "°C     | " + f + "°F");
+System.out.println("Account locked");
 }
 ```
+
 </details>
 
----
+## For loops
 
-### Opgave 21: Savings calculator
+### Opgave 20: Savings calculator
 **Scenario:**
 Du sparer 1000 kr om måneden i 12 måneder.
 
@@ -939,7 +988,7 @@ System.out.println("Total after 1 year: " + total + " kr");
 
 ---
 
-### Opgave 22: Multiplication tables 1-10
+### Opgave 21: Multiplication tables 1-10
 **Scenario:**
 Print gangetabeller for alle tal fra 1 til 10.
 
@@ -962,7 +1011,7 @@ for (int n = 1; n <= 10; n++) {
 
 ---
 
-### Opgave 23: FizzBuzz
+### Opgave 22: FizzBuzz
 **Scenario:**
 Classic FizzBuzz problem.
 
@@ -993,7 +1042,7 @@ for (int i = 1; i <= 30; i++) {
 
 ---
 
-### Opgave 24: Prime numbers
+### Opgave 23: Prime numbers
 **Scenario:**
 Find om et tal er primtal.
 
@@ -1027,7 +1076,7 @@ if (isPrime) {
 
 # For loops med array
 
-### Opgave 25: Grade statistics
+### Opgave 24: Grade statistics
 **Scenario:**
 En klasse har scores: {85, 92, 78, 88, 95, 73, 90}.
 
@@ -1077,7 +1126,7 @@ System.out.println("Scores above 80: " + countAbove80);
 
 ---
 
-### Opgave 26: Temperature analysis
+### Opgave 25: Temperature analysis
 **Scenario:**
 Ugens temperaturer: {18, 22, 20, 25, 19, 21, 23} (°C).
 
@@ -1132,7 +1181,7 @@ System.out.println("Days above 20°C: " + countAbove20);
 
 ---
 
-### Opgave 27: Sales analysis
+### Opgave 26: Sales analysis
 **Scenario:**
 Månedens daglige salg: {1200, 1500, 900, 2100, 1800, 1300, 2500} (kr).
 
@@ -1184,93 +1233,10 @@ System.out.println("Days above 1500 kr: " + countAbove1500);
 
 ---
 
-### Opgave 28: Complete data analysis
-**Scenario:**
-Analyse af test scores fra to klasser.
-
-**Opgave:**
-Class A: {85, 92, 78, 88, 95, 73, 90}
-Class B: {80, 85, 90, 75, 88, 92, 87}
-
-For hver klasse, find:
-- Average
-- Highest og lowest score
-- Antal passing (>= 60)
-- Antal excellent (>= 90)
-
-Derefter sammenlign klasserne.
-
-<details>
-<summary>Se svar</summary>
-
-```java
-int[] classA = {85, 92, 78, 88, 95, 73, 90};
-int[] classB = {80, 85, 90, 75, 88, 92, 87};
-
-// Analyze Class A
-int sumA = 0;
-int minA = classA[0];
-int maxA = classA[0];
-int passingA = 0;
-int excellentA = 0;
-
-for (int i = 0; i < classA.length; i++) {
-    sumA += classA[i];
-    if (classA[i] < minA) minA = classA[i];
-    if (classA[i] > maxA) maxA = classA[i];
-    if (classA[i] >= 60) passingA++;
-    if (classA[i] >= 90) excellentA++;
-}
-double avgA = (double) sumA / classA.length;
-
-// Analyze Class B
-int sumB = 0;
-int minB = classB[0];
-int maxB = classB[0];
-int passingB = 0;
-int excellentB = 0;
-
-for (int i = 0; i < classB.length; i++) {
-    sumB += classB[i];
-    if (classB[i] < minB) minB = classB[i];
-    if (classB[i] > maxB) maxB = classB[i];
-    if (classB[i] >= 60) passingB++;
-    if (classB[i] >= 90) excellentB++;
-}
-double avgB = (double) sumB / classB.length;
-
-// Print results
-System.out.println("=== CLASS A STATISTICS ===");
-System.out.println("Average: " + avgA);
-System.out.println("Highest: " + maxA);
-System.out.println("Lowest: " + minA);
-System.out.println("Passing: " + passingA);
-System.out.println("Excellent: " + excellentA);
-System.out.println();
-
-System.out.println("=== CLASS B STATISTICS ===");
-System.out.println("Average: " + avgB);
-System.out.println("Highest: " + maxB);
-System.out.println("Lowest: " + minB);
-System.out.println("Passing: " + passingB);
-System.out.println("Excellent: " + excellentB);
-System.out.println();
-
-System.out.println("=== COMPARISON ===");
-if (avgA > avgB) {
-    System.out.println("Class A has higher average");
-} else {
-    System.out.println("Class B has higher average");
-}
-System.out.println("Difference: " + Math.abs(avgA - avgB));
-```
-</details>
-
----
 
 # For-each loops
 
-### Opgave 29: Shopping cart total
+### Opgave 27: Shopping cart total
 **Scenario:**
 Prices i shopping cart: `{299.0, 149.0, 899.0, 49.0}` (kr).
 
@@ -1295,7 +1261,7 @@ System.out.println("Total: " + total + " kr");
 
 ---
 
-### Opgave 30: Student names
+### Opgave 28: Student names
 **Scenario:**
 Class roster: `{"Emma", "Liam", "Olivia", "Noah", "Ava"}`.
 
@@ -1340,7 +1306,7 @@ System.out.println("Longest name: " + longest);
 
 ---
 
-### Opgave 31: Product inventory
+### Opgave 29: Product inventory
 **Scenario:**
 En skobutik har sko i 7 størrelser. Lad os sige fra str 38 til 44. På den første plads i tabellen kan man se at der er 45 par tilbage i størrelse 38.   
 
